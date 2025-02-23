@@ -1,0 +1,76 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+    <h1><i class="fas fa-microscope"></i> Plant Disease Detection & Diagnosis</h1>
+    <p>Upload photos of your plants and get instant AI-powered disease detection and detailed diagnosis to keep your crops healthy.</p>
+    <a href="{% url 'detect' %}" class="btn">Try Now <i class="fas fa-arrow-right"></i></a>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <i class="fas fa-robot"></i>
+        <h2>AI-Powered Detection</h2>
+        <p>Advanced machine learning algorithms for accurate disease identification</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-comments"></i>
+        <h2>Detailed Diagnosis</h2>
+        <p>Get comprehensive information about detected diseases and treatment recommendations</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-bolt"></i>
+        <h2>Instant Results</h2>
+        <p>Quick and reliable disease detection within seconds of image upload</p>
+    </div>
+</div>
+
+<div class="supported-crops">
+    <h2><i class="fas fa-seedling"></i> Supported Crops</h2>
+    <div class="crop-grid">
+        <div class="crop-item">
+            <h3>Apple</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Blueberry</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Cherry</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Corn</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Grape</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Orange</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Peach</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Bell Pepper</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Potato</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Raspberry</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Soybean</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Squash</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Strawberry</h3>
+        </div>
+        <div class="crop-item">
+            <h3>Tomato</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

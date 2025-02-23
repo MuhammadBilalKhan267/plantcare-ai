@@ -1,0 +1,57 @@
+<!-- detect.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="upload-section">
+    <h2><i class="fas fa-upload"></i> Upload Plant Image</h2>
+    <p>Upload a clear image of the affected plant for disease detection</p>
+    <form method="post" enctype="multipart/form-data" id="upload-form">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit" class="btn">Analyze Image</button>
+    </form>
+</div>
+
+<div class="result-section" id="result" style="display: none;">
+    <h2><i class="fas fa-search"></i> Detection Results</h2>
+    <div style="display: flex; gap: 20px;">
+    <div id="diagnosis">
+        <h3>Detected Disease:</h3>
+        <p id="disease-name"></p>
+        <h3>Diagnosis:</h3>
+        <p id="disease-description"></p>
+    </div>
+    <img id="preview-image" src="" alt="Uploaded plant image">
+    <div>
+</div>
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let formData = new FormData();
+        let imageFile = document.getElementsByName('image')[0].files[0];
+        formData.append("image", imageFile);
+        
+        let previewImage = document.getElementById('preview-image');
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            previewImage.src = event.target.result;
+        };
+        reader.readAsDataURL(imageFile);
+        fetch('/upload/', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('disease-name').innerText = data.name;
+            //document.getElementById('disease-description').innerText = data.description;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    
+</script>
+{% endblock %}
