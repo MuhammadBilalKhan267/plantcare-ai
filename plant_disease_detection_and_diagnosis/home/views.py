@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import io
 from .detect import detect_disease
+from .chat import diagnose
 
 
 # Create your views here.
@@ -24,12 +25,14 @@ def upload_image(request):
         image_np = np.array(image_pil, dtype="uint8")  # Convert to NumPy array
 
         results = detect_disease(image_np)
+        name = results[0][0]
 
-
+        description = diagnose(name)
 
         return JsonResponse({
             "message": "File processed successfully",
-            "name": results[0][0],  # Return array shape info
+            "name": name,
+            "description": description,
         })
     
     return JsonResponse({"error": "Invalid request"}, status=400)
